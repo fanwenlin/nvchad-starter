@@ -2,7 +2,7 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls" , "gopls"}
+local servers = { "html", "cssls", "gopls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -29,9 +29,9 @@ lspconfig.ts_ls.setup {
 
 -- golang
 lspconfig.gopls.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
   cmd = { "gopls" },
   filetypes = { "go", "gomod" },
   root_dir = require("lspconfig").util.root_pattern("go.work", "go.mod", ".git"),
@@ -41,7 +41,7 @@ lspconfig.gopls.setup {
         unusedparams = true,
       },
       staticcheck = true,
-      gofumpt = true,  -- 使用 gofumpt 格式化代码
+      gofumpt = true, -- 使用 gofumpt 格式化代码
     },
   },
 }
